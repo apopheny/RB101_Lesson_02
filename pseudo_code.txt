@@ -1,0 +1,46 @@
+# keyword 	meaning
+# START 	start of the program
+# SET 	sets a variable we can use for later
+# GET 	retrieve input from user
+# PRINT 	displays output to user
+# READ 	retrieve value from variable
+# IF / ELSE IF / ELSE 	show conditional branches in logic
+# WHILE 	show looping logic
+# END 	end of the program
+
+write out pseudo-code (both casual and formal) that does the following:
+
+    a method that returns the sum of two integers
+
+      # start
+      # print purpose of program
+      # get first integer
+      #   set first integer to variable1
+      # get second integer
+      #   set second integer to variable2
+      # add variable1 and variable2
+      #   set result to result_variable
+      # print result_variable
+      # end
+
+    a method that takes an array of strings, and returns a string that is all those strings concatenated together
+
+      # start
+      # print purpose of program
+      # get first string
+      #   push first string to array
+      # get second, third, etc. string or get user input to exit program
+      #   push second, third, etc. string to array
+      # once exit:
+      #   print array by index position with space separators
+      # end
+
+
+    a method that takes an array of integers, and returns a new array with every other element
+
+      # start
+      # if array index position is odd
+      #   next
+      # else push to new array
+      # return new array
+      # end

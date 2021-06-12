@@ -1,71 +1,101 @@
-# Build a command line calculator program that does the following:
+def prompt(message)
+  Kernel.puts("=> #{message}")
+end
 
-#     asks for two numbers
-#     asks for the type of operation to perform: add, subtract, multiply or divide
-#     displays the result
+def valid_number?(num)
+  num.to_i != 0
+end
 
-puts ">> This is a basic calculator"
-puts ">> Enter your first number:"
-first_number = gets.to_i
-loop do
-  if first_number == nil 
-    puts ">> Please enter a number:"
-    first_number = gets.to_i
-  else
-    break
-  end
-end 
-  
-puts ">> Enter your second number?:"
-second_number = gets.to_i
-loop do
-  if second_number == nil 
-    puts ">> Please enter a number:"
-    second_number = gets.to_i
-  else
-    break
-  end
-end 
-
-
-def calculate(num_1, num_2)
-  puts ">> Would you like to add, subtract, multiply, or divide?"
-  puts ">> Type 'add', 'subtract', 'multiply', or 'divide':"
-  operation = gets.chomp.downcase
-  if operation == 'add'
-    puts num_1 + num_2
-  elsif
-    operation == 'subtract'
-    puts  num_1 - num_2
-  elsif
-    operation == 'multiply'
-    puts num_1 * num_2
-  elsif
-    operation == 'divide'
-    puts num_1 / num_2
-  else
-    loop do
-      puts "You did not enter a valid operation."
-      puts "Please type 'add', 'subtract', 'multiply', or 'divide':"
-      operation = gets.chomp.downcase
-      if operation == 'add'
-        puts num_1 + num_2
-        break
-      elsif
-        operation == 'subtract'
-        puts  num_1 - num_2
-        break
-      elsif
-        operation == 'multiply'
-        puts num_1 * num_2
-        break
-      elsif
-        operation == 'divide'
-        puts num_1 / num_2
-        break
-      end
-    end
+def operation_to_message(op)
+  case op
+  when '1'
+    'Adding'
+  when '2'
+    'Subtracting'
+  when '3'
+    'Multiplying'
+  when '4'
+    'Dividing'
   end
 end
 
-calculate(first_number, second_number)
+prompt("Welcome to Calculator! Enter your name:")
+
+name = nil
+loop do
+  name = Kernel.gets().chomp()
+
+  if name.empty?()
+    prompt("Make sure to use a valid name.")
+  else
+    break
+  end
+end
+
+prompt("Hi, #{name}!")
+
+loop do # main loop
+  number1 = nil
+  loop do
+    prompt("What's the first number?")
+    number1 = Kernel.gets().chomp()
+    if valid_number?(number1)
+      break
+    else
+      prompt("Hmm... that doesn't look like a valid number")
+    end
+  end
+
+  number2 = nil
+  loop do
+    prompt("What's the second number?")
+    number2 = Kernel.gets().chomp()
+    if valid_number?(number2)
+      break
+    else
+      prompt("Hmm... that doesn't look like a valid number")
+    end
+  end
+
+  operator_prompt = <<-MSG
+  What operation would you like to perform? 
+  1) add 
+  2) subtract 
+  3) multiply
+  4) divide
+  MSG
+
+  prompt(operator_prompt)
+
+  operator = nil
+  loop do
+    operator = Kernel.gets().chomp()
+
+    if %w(1 2 3 4).include?(operator)
+      break
+    else
+      prompt("Must choose 1, 2, 3, or 4")
+    end
+  end
+
+  prompt("#{operation_to_message(operator)} the two numbers...")
+
+  result =  case operator
+            when '1'
+              number1.to_i() + number2.to_i()
+            when '2'
+              number1.to_i() - number2.to_i()
+            when '3'
+              number1.to_i() * number2.to_i()
+            when '4'
+              number1.to_f() / number2.to_f()
+            end
+
+  prompt("The result is #{result}")
+
+  prompt("Do you want to perform another calculation? (Y to calculate again)")
+  answer = Kernel.gets().chomp()
+  break unless answer.downcase().start_with?('y')
+end
+
+prompt("Thank you for using the calculator. Goodbye.")
