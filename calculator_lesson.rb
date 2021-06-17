@@ -32,7 +32,7 @@
 require "pry"
 require 'yaml'
 MESSAGES = YAML.load_file('calculator_messages.yml')
-puts MESSAGES.inspect
+
 def prompt(message)
   Kernel.puts("=> #{message}")
 end
